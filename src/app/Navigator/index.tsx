@@ -13,7 +13,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import useUserModel from 'models/userModel';
+import useUserModel from 'models/user/userModel';
 import useRouter from 'use-react-router';
 
 

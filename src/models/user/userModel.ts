@@ -33,5 +33,5 @@ export default createModel(() => {
         setUser(null);
     }
 
-    return { user, signIn, signUp, logout, errCode, loading };
+    return { user, signIn, signUp, logout, errCode, loading, setUser };
 });

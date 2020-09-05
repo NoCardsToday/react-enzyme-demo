@@ -7,7 +7,7 @@ import SignUp from 'app/SignUp';
 import NotFound from 'app/Router/NotFound';
 
 
-describe('Component: Router', () => {
+describe('<Router />', () => {
     const wrapper = mountWithHistory(
         <Switch>
             <Route exact path='/' component={Welcome} />
@@ -17,7 +17,7 @@ describe('Component: Router', () => {
         </Switch>
     );
 
-    it('Page: Welcome', () => {
+    it('should display <Welcome /> when visiting "/".', () => {
         wrapper.history.push('/');
         wrapper.update();
 
@@ -27,7 +27,7 @@ describe('Component: Router', () => {
         expect(wrapper.find(NotFound).exists()).toBeFalsy();
     });
 
-    it('Page: Sign in', () => {
+    it('should display <SignIn /> when visiting "/signin".', () => {
         wrapper.history.push('/signin');
         wrapper.update();
 
@@ -37,7 +37,7 @@ describe('Component: Router', () => {
         expect(wrapper.find(NotFound).exists()).toBeFalsy();
     });
 
-    it('Page: Sign up', () => {
+    it('should display <SignUp /> when visiting "/signup".', () => {
         wrapper.history.push('/signup');
         wrapper.update();
 
@@ -47,7 +47,7 @@ describe('Component: Router', () => {
         expect(wrapper.find(NotFound).exists()).toBeFalsy();
     });
 
-    it('Page: Not found', () => {
+    it('should display <NotFound /> when visiting other urls.', () => {
         wrapper.history.push('/test');
         wrapper.update();
 

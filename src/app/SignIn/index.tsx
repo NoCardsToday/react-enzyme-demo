@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { sha256 } from 'js-sha256';
-import useUserModel from 'models/userModel';
+import useUserModel from 'models/user/userModel';
 import useRouter from 'use-react-router';
 
 

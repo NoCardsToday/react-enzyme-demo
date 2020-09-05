@@ -1,5 +1,5 @@
 import React from 'react';
-import useUserModel from 'models/userModel';
+import useUserModel from 'models/user/userModel';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 
