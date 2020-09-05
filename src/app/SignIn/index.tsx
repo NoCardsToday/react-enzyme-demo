@@ -72,8 +72,9 @@ export default () => {
             }
             default: {
                 if (user !== null) {
+                    console.log(user)
                     console.log('success')
-                    setTimeout(() => history.push('/'), 100);
+                    history.push('/');
                 }
             }
         }
