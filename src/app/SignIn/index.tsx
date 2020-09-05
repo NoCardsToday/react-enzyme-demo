@@ -107,7 +107,11 @@ export default () => {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form} onSubmit={(e) => handleSubmit(e)}>
+                <form
+                    className={classes.form}
+                    onSubmit={(e) => handleSubmit(e)}
+                    id='sign-in-form'
+                >
                     <TextField
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -115,7 +119,7 @@ export default () => {
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
+                        id="sign-in-email"
                         label="Email Address"
                         name="email"
                         autoComplete="email"
@@ -133,7 +137,7 @@ export default () => {
                         name="password"
                         label="Password"
                         type="password"
-                        id="password"
+                        id="sign-in-password"
                         autoComplete="current-password"
                         error={pwError !== null}
                         helperText={pwError}
@@ -149,6 +153,7 @@ export default () => {
                         color="primary"
                         className={classes.submit}
                         disabled={loading}
+                        id='sign-in-button'
                     >
                         Sign In
                     </Button>
