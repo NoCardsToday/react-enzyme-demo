@@ -33,7 +33,14 @@ const useStyles = makeStyles((theme: Theme) =>
         submit: {
             margin: theme.spacing(3, 0, 2),
         },
-    }));
+    })
+);
+
+enum ErrCode {
+    NO_ERR = -1,
+    SIGN_UP_SERVER_ERROR = 200,
+    SIGN_UP_DUPLICATE_EMAIL = 201,
+}
 
 export default function SignUp() {
     const classes = useStyles()
@@ -44,45 +51,28 @@ export default function SignUp() {
     const [emailError, setEmailError] = React.useState<null | string>(null)
     const [pwError, setPwError] = React.useState<null | string>(null)
     const [ensureError, setEnsureError] = React.useState<null | string>(null)
-    const { signIn, user, errCode, loading ,signUp} = useUserModel();
+    const {user, errCode, loading ,signUp} = useUserModel();
     const {history} = useRouter();
 
     React.useEffect(() => {
         switch (errCode) {
             case ErrCode.SIGN_UP_SERVER_ERROR: {
-                setEmailError('Server error');
-                setPwError('Server error');
-                break;
+                setEmailError('Server error')
+                break
             }
-            case ErrCode.SIGN_UP_INVALID_EMAIL: {
-                setEmailError('Invalid email');
-                break;
-            }
-            case ErrCode.SIGN_UP_INVALID_ENSURE: {
-                setPwError('Inconsistent password!');
-                break;
-            }
-            case ErrCode.SIGN_UP_PASSWORD_TOO_SHORT: {
-                setPwError('Password too short!')
+            case ErrCode.SIGN_UP_DUPLICATE_EMAIL: {
+                setEmailError('Duplicate email')
                 break
             }
             default: {
                 if (user !== null) {
-                    console.log('success')
-                    setTimeout(() => history.push('/'), 100);
+                    history.push('/');
                 }
             }
         }
     }, [errCode, user])
 
-    enum ErrCode {
-        NO_ERR = -1,
-        SIGN_UP_SERVER_ERROR = 200,
-        SIGN_UP_INVALID_EMAIL = 201,
-        SIGN_UP_INVALID_ENSURE = 202,
-        SIGN_UP_PASSWORD_TOO_SHORT = 203,
-    }
-
+    
     const validateEmail = () => {
         const emailReg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
         return emailReg.test(email);
@@ -104,25 +94,21 @@ export default function SignUp() {
 
 
         if(!validateEmail()){
-            setEmailError("Invalid Email!")
+            setEmailError("Invalid email")
             return
         }
 
         if(!validatePassword()){
-            setPwError("Password too short!")
+            setPwError("Password too short")
             return
         }
 
         if(!validateEnsure()){
-            setEnsureError("Inconsistent password!")
+            setEnsureError("Inconsistent password")
             return
         }
 
-        // 添加数据到后端
-        signUp(username, email, password);
-
-        //登录
-        signIn(email, sha256(password));
+        signUp(username, email, sha256(password));
     }
 
     return (
@@ -210,6 +196,7 @@ export default function SignUp() {
                         color="primary"
                         className={classes.submit}
                         id='sign-up-button'
+                        disabled={loading}
                     >
                         Sign Up
                     </Button>

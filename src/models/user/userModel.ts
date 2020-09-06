@@ -19,8 +19,10 @@ export default createModel(() => {
                 const code: number = response.data.content.errCode;
                 setCode(code);
             }
+            setLoading(false)
         }).catch((error) => {
             console.log('error')
+            setLoading(false)
         });
         // setTimeout(() => {
         //     if (email === '123@abc.com' && pw === '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92') {
@@ -37,7 +39,21 @@ export default createModel(() => {
     };
 
     const signUp = (userName: string, email: string, pw: string) => {
-
+        setLoading(true)
+        setCode(-1)
+        axios.post('/signup', { userName, email, pw }).then((response) => {
+            if (response.data.result === 'success') {
+                const c: any = response.data.content;
+                setUser(new IUser(c.userId, c.userName, c.userEmail, c.userAvatar, c.userToken));
+            } else {
+                const code: number = response.data.content.errCode;
+                setCode(code);
+            }
+            setLoading(false)
+        }).catch((error) => {
+            console.log(error)
+            setLoading(false)
+        });
     }
 
     const logout = () => {
