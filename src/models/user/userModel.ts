@@ -36,7 +36,7 @@ export default createModel(() => {
         }, 1000);
     };
 
-    const signUp = () => {
+    const signUp = (userName: string, email: string, pw: string) => {
 
     }
 
