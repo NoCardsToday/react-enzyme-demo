@@ -41,9 +41,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 enum ErrCode {
     NO_ERR = -1,
-    SERVER_ERROR = 100,
-    INVALID_EMAIL = 101,
-    INVALID_PASSWORD = 102,
+    SIGN_IN_SERVER_ERROR = 100,
+    SIGN_IN_EMAIL_NOT_FOUND = 101,
+    SIGN_IN_PASSWORD_MISMATCH = 102,
 };
 
 export default () => {
@@ -56,24 +56,23 @@ export default () => {
     const { history } = useRouter();
 
     React.useEffect(() => {
+        console.log(errCode);
         switch (errCode) {
-            case ErrCode.SERVER_ERROR: {
+            case ErrCode.SIGN_IN_SERVER_ERROR: {
                 setEmailError('Server error');
                 setPwError('Server error');
                 break;
             }
-            case ErrCode.INVALID_EMAIL: {
-                setEmailError('Invalid email');
+            case ErrCode.SIGN_IN_EMAIL_NOT_FOUND: {
+                setEmailError('Email not found');
                 break;
             }
-            case ErrCode.INVALID_PASSWORD: {
-                setPwError('Invalid password');
+            case ErrCode.SIGN_IN_PASSWORD_MISMATCH: {
+                setPwError('Password mismatch');
                 break;
             }
             default: {
                 if (user !== null) {
-                    console.log(user)
-                    console.log('success')
                     history.push('/');
                 }
             }
