@@ -85,7 +85,7 @@ describe('Sign in', () => {
         });
 
         wrapper.update();
-        expect(wrapper.find(TextField).filter('#sign-in-email').prop('helperText')).toEqual('Password mismatch');
+        expect(wrapper.find(TextField).filter('#sign-in-password').prop('helperText')).toEqual('Password mismatch');
     });
 
     it('successes when email matches with password.', async () => {

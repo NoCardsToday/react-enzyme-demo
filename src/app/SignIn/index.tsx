@@ -56,7 +56,7 @@ export default () => {
     const { history } = useRouter();
 
     React.useEffect(() => {
-        console.log(errCode);
+        // console.log(errCode);
         switch (errCode) {
             case ErrCode.SIGN_IN_SERVER_ERROR: {
                 setEmailError('Server error');

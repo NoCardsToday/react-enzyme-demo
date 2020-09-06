@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -51,20 +49,20 @@ export default function SignUp() {
 
     React.useEffect(() => {
         switch (errCode) {
-            case ErrCode.SERVER_ERROR: {
+            case ErrCode.SIGN_UP_SERVER_ERROR: {
                 setEmailError('Server error');
                 setPwError('Server error');
                 break;
             }
-            case ErrCode.INVALID_EMAIL: {
+            case ErrCode.SIGN_UP_INVALID_EMAIL: {
                 setEmailError('Invalid email');
                 break;
             }
-            case ErrCode.INVALID_ENSURE: {
+            case ErrCode.SIGN_UP_INVALID_ENSURE: {
                 setPwError('Inconsistent password!');
                 break;
             }
-            case ErrCode.PASSWORD_TOO_SHORT: {
+            case ErrCode.SIGN_UP_PASSWORD_TOO_SHORT: {
                 setPwError('Password too short!')
                 break
             }
@@ -79,10 +77,10 @@ export default function SignUp() {
 
     enum ErrCode {
         NO_ERR = -1,
-        SERVER_ERROR = 200,
-        INVALID_EMAIL = 201,
-        INVALID_ENSURE = 202,
-        PASSWORD_TOO_SHORT = 203,
+        SIGN_UP_SERVER_ERROR = 200,
+        SIGN_UP_INVALID_EMAIL = 201,
+        SIGN_UP_INVALID_ENSURE = 202,
+        SIGN_UP_PASSWORD_TOO_SHORT = 203,
     }
 
     const validateEmail = () => {
@@ -137,7 +135,11 @@ export default function SignUp() {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
-                <form className={classes.form} onSubmit={(e) => handleSubmit(e)} id='sign-up-form'>
+                <form
+                    className={classes.form}
+                    onSubmit={(e) => handleSubmit(e)}
+                    id='sign-up-form'
+                >
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
@@ -148,7 +150,7 @@ export default function SignUp() {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="username"
+                                id="sign-up-username"
                                 label="username"
                                 autoFocus
                             />
@@ -160,7 +162,7 @@ export default function SignUp() {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="email"
+                                id="sign-up-email"
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
@@ -178,7 +180,7 @@ export default function SignUp() {
                                 name="password"
                                 label="Password"
                                 type="password"
-                                id="password"
+                                id="sign-up-password"
                                 autoComplete="current-password"
                                 error={pwError !== null}
                                 helperText={pwError}
@@ -194,7 +196,7 @@ export default function SignUp() {
                                 name="ensurePassword"
                                 label="Ensure Password"
                                 type="password"
-                                id="ensurePassword"
+                                id="sign-up-ensure-password"
                                 autoComplete="current-password"
                                 error={ensureError !== null}
                                 helperText={ensureError}
